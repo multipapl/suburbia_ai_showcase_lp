@@ -20,11 +20,11 @@ function App() {
                 <main>
                     <HeroSection />
 
-                    {stages.map((stage) => (
+                    {stages.map((stage, index) => (
                         stage.isFork ? (
                             <ForkSection key={stage.id} stage={stage} />
                         ) : (
-                            <StageSection key={stage.id} stage={stage} />
+                            <StageSection key={stage.id} stage={stage} priority={index === 0} />
                         )
                     ))}
 

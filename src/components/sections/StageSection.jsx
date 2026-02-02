@@ -4,7 +4,7 @@ import KeyFocusBadge from '../ui/KeyFocusBadge';
 import Checkpoint from '../ui/Checkpoint';
 import SmartMedia from '../ui/SmartMedia';
 
-export default function StageSection({ stage }) {
+export default function StageSection({ stage, priority = false }) {
     const { scenario } = useScenario();
     const isPrecision = scenario === 'A';
 
@@ -20,7 +20,7 @@ export default function StageSection({ stage }) {
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
-                        viewport={{ once: true, margin: '-100px' }}
+                        viewport={{ once: true, margin: '400px' }}
                         className={stage.id % 2 === 0 ? 'lg:order-2' : ''}
                     >
                         {/* Stage Number */}
@@ -61,7 +61,7 @@ export default function StageSection({ stage }) {
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        viewport={{ once: true, margin: '-100px' }}
+                        viewport={{ once: true, margin: '400px' }}
                         className={stage.id % 2 === 0 ? 'lg:order-1' : ''}
                     >
                         <SmartMedia
@@ -71,6 +71,7 @@ export default function StageSection({ stage }) {
                             title={stage.title}
                             showPlayButton={stage.id === 6}
                             autoPlayInterval={stage.id === 5 ? 3000 : 5000}
+                            priority={priority}
                         />
                     </motion.div>
                 </div>

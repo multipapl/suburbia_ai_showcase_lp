@@ -62,6 +62,11 @@ body {
   .glass-dark {
     @apply bg-deep-black/90 backdrop-blur-xl border border-white/5;
   }
+
+  .sticky-fix {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
 }
 
 /* Animations */

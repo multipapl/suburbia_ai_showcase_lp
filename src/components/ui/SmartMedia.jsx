@@ -69,7 +69,7 @@ function getPlaceholderUrl(url) {
     return null;
 }
 
-// Generate optimized lightbox URL (2K max for high quality without massive files)
+// Generate optimized lightbox URL (1920px max for high quality without massive files)
 function getLightboxUrl(url) {
     if (!url) return null;
     const mediaType = getMediaType(url);
@@ -79,8 +79,8 @@ function getLightboxUrl(url) {
             // Video: f_auto, q_auto, vc_auto for optimal codec
             return url.replace('/upload/', '/upload/f_auto,q_auto,vc_auto/');
         }
-        // Image: w_2560,c_limit = max 2560px width (2K), f_auto,q_auto for optimization
-        return url.replace('/upload/', '/upload/w_2560,c_limit,f_auto,q_auto/');
+        // Image: w_1920,c_limit = max 1920px width (Full HD), f_auto,q_auto for optimization
+        return url.replace('/upload/', '/upload/w_1920,c_limit,f_auto,q_auto/');
     }
     return url;
 }
@@ -170,7 +170,7 @@ function Lightbox({
                 });
             };
 
-            applyPadding('header, .fixed.right-6, .fixed.right-8');
+            applyPadding('header, .fixed.right-6, .fixed.right-8, [class*="Sticky"]');
 
             return () => {
                 document.body.style.overflow = originalOverflow;
@@ -187,7 +187,7 @@ function Lightbox({
                         }
                     });
                 };
-                restorePadding('header, .fixed.right-6, .fixed.right-8');
+                restorePadding('header, .fixed.right-6, .fixed.right-8, [class*="Sticky"]');
             };
         }
     }, [isOpen]);
@@ -415,7 +415,8 @@ export default function SmartMedia({
     isAnimated = false,
     autoPlayInterval = 4000,
     pauseOnHover = true,
-    enableLightbox = true  // New prop to enable/disable lightbox
+    enableLightbox = true,  // New prop to enable/disable lightbox
+    priority = false  // Priority loading for LCP optimization
 }) {
     const { scenario } = useScenario();
     const isPrecision = scenario === 'A';
@@ -493,21 +494,32 @@ export default function SmartMedia({
     useEffect(() => {
         if (!isInView || !enableLightbox) return;
 
-        // Prefetch lightbox-quality images for all media in this gallery
+        // Prefetch both lightbox-quality (1920px) and optimized (1200px) images for instant gallery navigation
         mediaUrls.forEach(url => {
             const mediaType = getMediaType(url);
             // Only prefetch images, not videos
             if (mediaType !== 'video' && !prefetchedUrls.has(url)) {
+                // Prefetch lightbox URL (1920px for high-res viewing)
                 const lightboxUrl = getLightboxUrl(url);
                 if (lightboxUrl) {
-                    // Use link prefetch for browser-native background loading
                     const link = document.createElement('link');
                     link.rel = 'prefetch';
                     link.as = 'image';
                     link.href = lightboxUrl;
                     document.head.appendChild(link);
-                    prefetchedUrls.add(url);
                 }
+
+                // Also prefetch optimized URL (1200px for gallery thumbnails)
+                const optimizedUrl = getOptimizedUrl(url, { width: 1200 });
+                if (optimizedUrl) {
+                    const link = document.createElement('link');
+                    link.rel = 'prefetch';
+                    link.as = 'image';
+                    link.href = optimizedUrl;
+                    document.head.appendChild(link);
+                }
+
+                prefetchedUrls.add(url);
             }
         });
     }, [isInView, mediaUrls, enableLightbox]);
@@ -662,6 +674,7 @@ export default function SmartMedia({
                                 loop={!isGallery}  // Only loop if single video (not gallery)
                                 playsInline
                                 preload="auto"
+                                {...(priority && { fetchpriority: 'high' })}
                                 onLoadedData={() => handleLoad(currentUrl)}
                                 onCanPlay={(e) => {
                                     // Ensure video plays when ready
@@ -681,7 +694,8 @@ export default function SmartMedia({
                             <motion.img
                                 src={optimizedUrl}
                                 alt={alt || title}
-                                loading="lazy"
+                                {...(priority ? {} : { loading: 'lazy' })}
+                                {...(priority && { fetchpriority: 'high' })}
                                 onLoad={() => handleLoad(currentUrl)}
                                 onError={() => handleError(currentUrl)}
                                 initial={{ opacity: 0, scale: 1.02 }}
