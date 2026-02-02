@@ -30,3 +30,6 @@ Thumbs.db
 # Cache
 .cache/
 .parcel-cache/
+
+# Documentation
+doc/
