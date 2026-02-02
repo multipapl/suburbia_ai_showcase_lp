@@ -116,3 +116,15 @@ body {
 .glow-orange-pulse {
   animation: pulse-glow-orange 2s ease-in-out infinite;
 }
+
+/* Hardware-accelerated lightbox transitions */
+.lightbox-gpu {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.lightbox-content {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+}

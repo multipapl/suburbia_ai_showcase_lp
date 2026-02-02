@@ -69,6 +69,25 @@ function getPlaceholderUrl(url) {
     return null;
 }
 
+// Generate optimized lightbox URL (2K max for high quality without massive files)
+function getLightboxUrl(url) {
+    if (!url) return null;
+    const mediaType = getMediaType(url);
+
+    if (url.includes('cloudinary.com')) {
+        if (mediaType === 'video') {
+            // Video: f_auto, q_auto, vc_auto for optimal codec
+            return url.replace('/upload/', '/upload/f_auto,q_auto,vc_auto/');
+        }
+        // Image: w_2560,c_limit = max 2560px width (2K), f_auto,q_auto for optimization
+        return url.replace('/upload/', '/upload/w_2560,c_limit,f_auto,q_auto/');
+    }
+    return url;
+}
+
+// Module-level Set to track prefetched URLs (persists across component instances)
+const prefetchedUrls = new Set();
+
 // Get dominant color based on scenario
 function getDominantColor(isPrecision) {
     return isPrecision ? 'rgba(0, 209, 255, 0.2)' : 'rgba(255, 138, 0, 0.2)';
@@ -93,9 +112,16 @@ function Lightbox({
     currentIndex,
     setCurrentIndex,
     isPrecision,
-    title
+    title,
+    thumbnailUrl  // Cached thumbnail for instant feedback
 }) {
     const isGallery = mediaUrls.length > 1;
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    // Reset loaded state when index changes
+    useEffect(() => {
+        setImageLoaded(false);
+    }, [currentIndex]);
 
     // Navigate functions
     const goNext = useCallback(() => {
@@ -132,14 +158,52 @@ function Lightbox({
         };
     }, [isOpen]);
 
+    // Touch/swipe gesture state
+    const touchStartX = useRef(null);
+    const touchStartY = useRef(null);
+
+    // Handle touch start
+    const handleTouchStart = useCallback((e) => {
+        touchStartX.current = e.touches[0].clientX;
+        touchStartY.current = e.touches[0].clientY;
+    }, []);
+
+    // Handle touch end - detect swipe direction
+    const handleTouchEnd = useCallback((e) => {
+        if (!touchStartX.current || !touchStartY.current || !isGallery) return;
+
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+
+        const deltaX = touchEndX - touchStartX.current;
+        const deltaY = touchEndY - touchStartY.current;
+
+        // Only trigger swipe if horizontal movement is greater than vertical
+        // and exceeds minimum threshold (50px)
+        const minSwipeDistance = 50;
+
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+            if (deltaX > 0) {
+                // Swipe right -> previous image
+                goPrev();
+            } else {
+                // Swipe left -> next image
+                goNext();
+            }
+        }
+
+        touchStartX.current = null;
+        touchStartY.current = null;
+    }, [isGallery, goNext, goPrev]);
+
     if (!isOpen) return null;
 
     const currentUrl = mediaUrls[currentIndex];
     const mediaType = getMediaType(currentUrl);
-    // Use video-specific optimization for videos, image optimization for images
-    const fullResUrl = mediaType === 'video'
-        ? getOptimizedVideoUrl(currentUrl)
-        : getOptimizedUrl(currentUrl, { width: 1920 });
+    // Use optimized lightbox URL (2K max for images, auto-optimized for videos)
+    const lightboxUrl = getLightboxUrl(currentUrl);
+    // Get thumbnail URL for placeholder (the one already cached by browser)
+    const placeholderUrl = getOptimizedUrl(currentUrl, { width: 1200 });
 
     return createPortal(
         <AnimatePresence>
@@ -148,8 +212,9 @@ function Lightbox({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.25 }}
                     className="fixed inset-0 z-[100] flex items-center justify-center"
+                    style={{ willChange: 'opacity' }}
                     onClick={onClose}
                 >
                     {/* Backdrop */}
@@ -221,14 +286,17 @@ function Lightbox({
                         </motion.div>
                     )}
 
-                    {/* Media content */}
+                    {/* Media content - Hardware accelerated, with swipe support */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.3 }}
+                        initial={{ opacity: 0, scale: 0.9, transform: 'translate3d(0, 0, 0)' }}
+                        animate={{ opacity: 1, scale: 1, transform: 'translate3d(0, 0, 0)' }}
+                        exit={{ opacity: 0, scale: 0.9, transform: 'translate3d(0, 0, 0)' }}
+                        transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
                         className="relative max-w-[90vw] max-h-[85vh] z-10"
+                        style={{ willChange: 'transform, opacity', backfaceVisibility: 'hidden', touchAction: 'pan-y pinch-zoom' }}
                         onClick={(e) => e.stopPropagation()}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
                     >
                         <AnimatePresence mode="wait">
                             <motion.div
@@ -236,11 +304,12 @@ function Lightbox({
                                 initial={{ opacity: 0, x: 50 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -50 }}
-                                transition={{ duration: 0.3 }}
+                                transition={{ duration: 0.25 }}
+                                className="relative"
                             >
                                 {mediaType === 'video' ? (
                                     <video
-                                        src={fullResUrl}
+                                        src={lightboxUrl}
                                         controls
                                         autoPlay
                                         loop
@@ -248,12 +317,25 @@ function Lightbox({
                                         className="max-w-[90vw] max-h-[85vh] rounded-xl shadow-2xl"
                                     />
                                 ) : (
-                                    <img
-                                        src={fullResUrl}
-                                        alt={title || 'Gallery image'}
-                                        className="max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl"
-                                        draggable={false}
-                                    />
+                                    <div className="relative">
+                                        {/* Blurred placeholder - always rendered, fades out smoothly */}
+                                        {placeholderUrl && (
+                                            <img
+                                                src={placeholderUrl}
+                                                alt=""
+                                                className={`max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl blur-sm scale-[1.02] transition-opacity duration-500 ease-out ${imageLoaded ? 'opacity-0' : 'opacity-100'}`}
+                                                aria-hidden="true"
+                                            />
+                                        )}
+                                        {/* High-res lightbox image - fades in over placeholder */}
+                                        <img
+                                            src={lightboxUrl}
+                                            alt={title || 'Gallery image'}
+                                            className={`max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl transition-opacity duration-500 ease-out ${placeholderUrl ? 'absolute inset-0' : ''} ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                            draggable={false}
+                                            onLoad={() => setImageLoaded(true)}
+                                        />
+                                    </div>
                                 )}
                             </motion.div>
                         </AnimatePresence>
@@ -371,6 +453,29 @@ export default function SmartMedia({
         }
         return () => observer.disconnect();
     }, []);
+
+    // Smart prefetching: preload lightbox images when stage becomes visible
+    useEffect(() => {
+        if (!isInView || !enableLightbox) return;
+
+        // Prefetch lightbox-quality images for all media in this gallery
+        mediaUrls.forEach(url => {
+            const mediaType = getMediaType(url);
+            // Only prefetch images, not videos
+            if (mediaType !== 'video' && !prefetchedUrls.has(url)) {
+                const lightboxUrl = getLightboxUrl(url);
+                if (lightboxUrl) {
+                    // Use link prefetch for browser-native background loading
+                    const link = document.createElement('link');
+                    link.rel = 'prefetch';
+                    link.as = 'image';
+                    link.href = lightboxUrl;
+                    document.head.appendChild(link);
+                    prefetchedUrls.add(url);
+                }
+            }
+        });
+    }, [isInView, mediaUrls, enableLightbox]);
 
     // Auto-play slideshow (only for images, videos handle their own advancement)
     useEffect(() => {
@@ -644,6 +749,7 @@ export default function SmartMedia({
                 setCurrentIndex={setCurrentIndex}
                 isPrecision={isPrecision}
                 title={title}
+                thumbnailUrl={optimizedUrl}
             />
         </>
     );

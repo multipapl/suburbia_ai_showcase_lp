@@ -7,6 +7,7 @@ import StageSection from './components/sections/StageSection';
 import ForkSection from './components/sections/ForkSection';
 import ContactSection from './components/sections/ContactSection';
 import StickyTimeline from './components/ui/StickyTimeline';
+import StickyScenarioSwitcher from './components/ui/StickyScenarioSwitcher';
 import workflowConfig from './data/workflowConfig.json';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                 </main>
                 <Footer />
                 <StickyTimeline stages={stages} />
+                <StickyScenarioSwitcher />
             </Layout>
         </ScenarioProvider>
     );
