@@ -7,7 +7,7 @@ export default function ContactSection() {
     const isPrecision = scenario === 'A';
 
     return (
-        <section id="contact" className="relative py-32 md:py-40">
+        <section id="contact" className="relative py-16 md:py-24">
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-3xl ${isPrecision ? 'bg-cyber-blue/5' : 'bg-safety-orange/5'
@@ -28,7 +28,7 @@ export default function ContactSection() {
                         <span className={isPrecision ? 'text-cyber-blue' : 'text-safety-orange'}>Your Project?</span>
                     </h2>
 
-                    <p className="text-xl text-text-muted max-w-2xl mx-auto mb-12">
+                    <p className="text-xl text-text-muted max-w-2xl mx-auto mb-8">
                         Let's discuss your vision and find the perfect approach — whether you need precision control or creative flexibility.
                     </p>
 

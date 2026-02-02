@@ -146,16 +146,50 @@ function Lightbox({
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [isOpen, onClose, goNext, goPrev, isGallery]);
 
-    // Lock body scroll
+
+    // Lock body scroll with scrollbar width compensation to prevent layout shift
     useEffect(() => {
         if (isOpen) {
+            // Calculate scrollbar width before hiding it
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            const originalPaddingRight = document.body.style.paddingRight;
+            const originalOverflow = document.body.style.overflow;
+
+            // Apply scroll lock with padding compensation to body and all fixed elements
             document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+            // Function to apply padding to fixed elements
+            const applyPadding = (selector) => {
+                const els = document.querySelectorAll(selector);
+                els.forEach(el => {
+                    const originalPadding = window.getComputedStyle(el).paddingRight;
+                    el.setAttribute('data-original-padding', originalPadding || '0px');
+                    const currentPadding = parseInt(originalPadding) || 0;
+                    el.style.paddingRight = `${currentPadding + scrollbarWidth}px`;
+                });
+            };
+
+            applyPadding('header, .fixed.right-6, .fixed.right-8');
+
+            return () => {
+                document.body.style.overflow = originalOverflow;
+                document.body.style.paddingRight = originalPaddingRight;
+
+                // Restore padding for fixed elements
+                const restorePadding = (selector) => {
+                    const els = document.querySelectorAll(selector);
+                    els.forEach(el => {
+                        const original = el.getAttribute('data-original-padding');
+                        if (original !== null) {
+                            el.style.paddingRight = original;
+                            el.removeAttribute('data-original-padding');
+                        }
+                    });
+                };
+                restorePadding('header, .fixed.right-6, .fixed.right-8');
+            };
         }
-        return () => {
-            document.body.style.overflow = '';
-        };
     }, [isOpen]);
 
     // Touch/swipe gesture state
@@ -288,24 +322,25 @@ function Lightbox({
 
                     {/* Media content - Hardware accelerated, with swipe support */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9, transform: 'translate3d(0, 0, 0)' }}
-                        animate={{ opacity: 1, scale: 1, transform: 'translate3d(0, 0, 0)' }}
-                        exit={{ opacity: 0, scale: 0.9, transform: 'translate3d(0, 0, 0)' }}
-                        transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                        className="relative max-w-[90vw] max-h-[85vh] z-10"
-                        style={{ willChange: 'transform, opacity', backfaceVisibility: 'hidden', touchAction: 'pan-y pinch-zoom' }}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                        className="relative z-10 flex items-center justify-center pointer-events-none"
+                        style={{ willChange: 'transform, opacity', width: 'auto', height: 'auto' }}
                         onClick={(e) => e.stopPropagation()}
-                        onTouchStart={handleTouchStart}
-                        onTouchEnd={handleTouchEnd}
                     >
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentIndex}
-                                initial={{ opacity: 0, x: 50 }}
+                                initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -50 }}
-                                transition={{ duration: 0.25 }}
-                                className="relative"
+                                exit={{ opacity: 0, x: -20 }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
+                                className="relative flex items-center justify-center p-4"
+                                style={{ pointerEvents: 'auto' }}
+                                onTouchStart={handleTouchStart}
+                                onTouchEnd={handleTouchEnd}
                             >
                                 {mediaType === 'video' ? (
                                     <video
@@ -314,16 +349,16 @@ function Lightbox({
                                         autoPlay
                                         loop
                                         playsInline
-                                        className="max-w-[90vw] max-h-[85vh] rounded-xl shadow-2xl"
+                                        className="max-w-[95vw] max-h-[90vh] md:max-w-[90vw] md:max-h-[85vh] w-auto h-auto rounded-xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] object-contain"
                                     />
                                 ) : (
-                                    <div className="relative">
+                                    <div className="relative flex items-center justify-center max-w-[95vw] max-h-[90vh] md:max-w-[90vw] md:max-h-[85vh]">
                                         {/* Blurred placeholder - always rendered, fades out smoothly */}
                                         {placeholderUrl && (
                                             <img
                                                 src={placeholderUrl}
                                                 alt=""
-                                                className={`max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl blur-sm scale-[1.02] transition-opacity duration-500 ease-out ${imageLoaded ? 'opacity-0' : 'opacity-100'}`}
+                                                className={`max-w-full max-h-full w-auto h-auto object-contain rounded-xl blur-md scale-[1.01] transition-opacity duration-700 ease-in-out ${imageLoaded ? 'opacity-0' : 'opacity-100'}`}
                                                 aria-hidden="true"
                                             />
                                         )}
@@ -331,7 +366,7 @@ function Lightbox({
                                         <img
                                             src={lightboxUrl}
                                             alt={title || 'Gallery image'}
-                                            className={`max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl transition-opacity duration-500 ease-out ${placeholderUrl ? 'absolute inset-0' : ''} ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                            className={`max-w-full max-h-full w-auto h-auto object-contain rounded-xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] transition-opacity duration-700 ease-in-out ${placeholderUrl ? 'absolute inset-0' : ''} ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                                             draggable={false}
                                             onLoad={() => setImageLoaded(true)}
                                         />

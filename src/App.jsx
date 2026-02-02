@@ -32,7 +32,6 @@ function App() {
                 </main>
                 <Footer />
                 <StickyTimeline stages={stages} />
-                <StickyScenarioSwitcher />
             </Layout>
         </ScenarioProvider>
     );
