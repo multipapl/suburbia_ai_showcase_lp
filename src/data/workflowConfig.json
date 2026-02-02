@@ -1,0 +1,317 @@
+{
+    "stages": [
+        {
+            "id": 1,
+            "title": "Planning",
+            "subtitle": "Architectural Analysis & Strategy",
+            "description": "Аналіз вхідних даних та структурування проекту. Процес побудований таким чином, щоб мінімізувати навантаження на клієнта та позбавити його мікроменеджменту процесів.",
+            "descriptionEn": "We analyze input data and structure the project, designed to minimize client workload and eliminate micromanagement, focusing attention on key development stages.",
+            "keyFocus": [
+                "Clear Plan",
+                "Process Control"
+            ],
+            "duration": 12,
+            "checkpoint": null,
+            "mediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986113/06_Proposed_Site_Layout_Rev_02_conv_1_tikfc2.jpg",
+            "mediaUrls": [
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986113/06_Proposed_Site_Layout_Rev_02_conv_1_tikfc2.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986113/07_Ground_Floor_Plan_Rev_02_conv_1_jl66to.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986116/08_First_Floor_Plan_Rev_02_conv_1_and4mq.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986117/09_Roof_Plan_Rev_01_conv_1_sc38za.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986118/10_Section_A_Rev_01_conv_1_sqvzqd.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986119/11_East_Elevation_Rev_01_conv_1_k2clmq.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986111/12_West_Elevation_Rev_01_conv_1_bd8da6.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986115/13_South_Elevation_Rev_01_conv_1_d6btbd.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986116/14_North_Elevation_Rev_01_conv_1_qjwg5k.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769986114/17_Proposed_Streetscenes_conv_1_ifqrip.jpg"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Pre-Production",
+            "subtitle": "Visual Language & Concept",
+            "description": "Пошук візуального стилю і концепції проекту. Збір або створення референсів. Активне використання актуальних АІ-інструментів в цілях економії часу і ресурсів.",
+            "descriptionEn": "Visual style and concept development. Reference gathering and creation. Active use of cutting-edge AI tools to save time and resources.",
+            "keyFocus": [
+                "References",
+                "Art Direction"
+            ],
+            "duration": 18,
+            "checkpoint": "Moodboard Approved",
+            "mediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988271/1_vkqe3a.jpg",
+            "mediaUrls": [
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988271/1_vkqe3a.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988274/2_nx3h0w.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988268/3_er0wzx.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988270/4_aayo2u.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988281/5_wkcjnf.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988275/6_wgf6s3.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988277/7_dpngon.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988279/8_lf2dfv.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988295/IMG_7713_ky7nbm.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988288/house-operable-wood-louvers-temperature-control-1-exterior_orlyol.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988293/house-operable-wood-louvers-temperature-control-13-terrace_1_m1p15t.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988284/house-operable-wood-louvers-temperature-control-2-site_vmets1.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988286/house-operable-wood-louvers-temperature-control-4-louvers_vsjp6q.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988291/house-operable-wood-louvers-temperature-control-5-louvers_urqtbp.jpg"
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Production",
+            "subtitle": "The Strategic Fork",
+            "description": "Основний етап створення візуального контенту, розділений на логічні блоки для забезпечення точності та художньої якості.",
+            "descriptionEn": "Main stage of visual content creation, divided into logical blocks to ensure precision and artistic quality.",
+            "keyFocus": [
+                "Consistent Architecture",
+                "Task Alignment"
+            ],
+            "duration": 55,
+            "checkpoint": null,
+            "mediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988963/4_post_optimized_j4ykvd.jpg",
+            "isFork": true,
+            "scenarioA": {
+                "name": "Precision",
+                "tagline": "Total Control",
+                "color": "#00D1FF",
+                "description": "Візуалізації з високими вимогами до точності і контролю над зображенням. Класичний архітектурний підхід з подальшою художньою пост-обробкою.",
+                "descriptionEn": "Visualizations with high demands for precision and image control. Classical architectural approach with subsequent artistic post-processing.",
+                "subStages": [
+                    {
+                        "id": "3.1",
+                        "title": "3D Core",
+                        "subtitle": "Precision Modeling",
+                        "description": "Ми проробляємо повне 3D-середовище. АІ виступає як допоміжний інструмент на етапі пост-продакшену.",
+                        "descriptionEn": "Full 3D environment development. AI serves as an auxiliary tool at the post-production stage.",
+                        "keyFocus": [
+                            "Custom Geometry",
+                            "Full Detail"
+                        ],
+                        "checkpoint": "Geometry Lock",
+                        "tag": "PRECISION FOCUS",
+                        "mediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989994/1_2_v0ugts.jpg",
+                        "mediaUrls": [
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989994/1_2_v0ugts.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769990174/2_2_O_au4ale.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769990108/2_O_p3mkft.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989989/2_hai5zx.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769990007/2_impodq.jpg"
+                        ]
+                    },
+                    {
+                        "id": "3.2",
+                        "title": "Rendering",
+                        "subtitle": "Technical Accuracy",
+                        "description": "Основа зображення — це 100% контрольований рендер. Генеративні інструменти застосовуються лише для оптимізації другорядних елементів.",
+                        "descriptionEn": "Image foundation is 100% controlled render. Generative tools applied only for secondary element optimization.",
+                        "keyFocus": [
+                            "Multi-pass Control",
+                            "Technical Precision"
+                        ],
+                        "checkpoint": "Lighting & Mood",
+                        "tag": "PRECISION FOCUS",
+                        "mediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989979/1_post_optimized_yifvx1.jpg",
+                        "mediaUrls": [
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989979/1_post_optimized_yifvx1.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989975/2_post_optimized_jh2vav.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989973/3_post_optimized_p11kwa.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989976/4_post_optimized_zirz0m.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989972/5_post_optimized_qko2lg.jpg"
+                        ]
+                    }
+                ],
+                "headerMediaUrls": [
+                    "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988963/4_post_optimized_j4ykvd.jpg"
+                ],
+                "headerMediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988963/4_post_optimized_j4ykvd.jpg"
+            },
+            "scenarioB": {
+                "name": "Artistic",
+                "tagline": "Agile & Fast",
+                "color": "#FF8A00",
+                "description": "Концептуалізація, пошук стилістики та дизайну. Фокус на художній інтерпретації та пошуку найбільш вигідної подачі архітектурного задуму.",
+                "descriptionEn": "Conceptualization, searching for style and design. Focus on artistic interpretation and finding the most effective presentation of architectural vision.",
+                "subStages": [
+                    {
+                        "id": "3.1",
+                        "title": "3D Core",
+                        "subtitle": "Strategic Setup",
+                        "description": "Моделюємо повну архітектуру, інші елементи зображення створюємо гібридно. Архітектура залишається точною, а контекст генерується.",
+                        "descriptionEn": "Full architecture modeling, other image elements created through hybrid approach. Architecture stays precise, context is generated.",
+                        "keyFocus": [
+                            "Concept Preservation",
+                            "Smart Proxies"
+                        ],
+                        "checkpoint": "Geometry Lock",
+                        "tag": "ARTISTIC FREEDOM",
+                        "mediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991447/1_skkda9.jpg",
+                        "mediaUrls": [
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991447/1_skkda9.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991445/3_sj55bq.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991446/4_iytyej.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991446/5_nap4yb.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991446/6_wr7xll.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991446/7_hrjq2r.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991446/8_tnbmsa.jpg"
+                        ]
+                    },
+                    {
+                        "id": "3.2",
+                        "title": "Rendering",
+                        "subtitle": "AI Interpretation",
+                        "description": "Ми використовуємо 3D для фіксації архітектури та композиції. АІ працює як інструмент візуалізації атмосфери та настрою.",
+                        "descriptionEn": "3D used to fix architecture and composition. AI works as a visualization tool for atmosphere and mood.",
+                        "keyFocus": [
+                            "Atmospheric Flexibility",
+                            "Style Control"
+                        ],
+                        "checkpoint": "Lighting & Mood",
+                        "tag": "ARTISTIC FREEDOM",
+                        "mediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991491/DH_view001_Autumn_Daylight_1768863600_hb5ioj.jpg",
+                        "mediaUrls": [
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991491/DH_view001_Autumn_Daylight_1768863600_hb5ioj.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991490/DH_view001_Summer_Blue_Hour_1768863824_ucsz6d.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991491/DH_view001_Summer_Daylight_1768863748_zbfrsq.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991492/DH_view001_Summer_Sunrise_1768863896_azdcn5.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991492/DH_view001_Summer_Sunset_1768863937_lq7xkw.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991491/DH_view001_Winter_Daylight_1768863356_pzufbx.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991492/DH_view001_Winter_Sunset_1768863564_qnssxb.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991510/DH_view003_Summer_Daylight_1768865001_drxrkj.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991510/DH_view003_Summer_Night_1768865110_wkyoib.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991509/DH_view003_Winter_Blue_Hour_1768864679_ztf3hb.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991509/DH_view003_Winter_Sunrise_1768864790_dqr3jh.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991547/DH_view007_Autumn_Blue_Hour_1768867532_diff_mpntsa.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991549/DH_view007_Summer_Daylight_1768867605_diff_ayismy.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991546/DH_view007_Summer_Daylight_1768867973_jqbiif.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991551/DH_view007_Summer_Night_1768867721_diff_ypoalq.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991545/DH_view007_Summer_Sunrise_1768868050_diff_zmmzjb.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991545/DH_view007_Winter_Daylight_1768867937_diff_hyvdqd.jpg",
+                            "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991548/DH_view007_Winter_Sunset_1768867402_vatj1a.jpg"
+                        ]
+                    }
+                ],
+                "headerMediaUrls": [
+                    "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991578/DH_view003_Summer_Night_1768865110_bntje0.jpg"
+                ],
+                "headerMediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991578/DH_view003_Summer_Night_1768865110_bntje0.jpg"
+            },
+            "mediaUrls": [
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988963/4_post_optimized_j4ykvd.jpg"
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Post-Production",
+            "subtitle": "Refining the Vision",
+            "description": "Фінальна обробка та надання зображенню завершеного вигляду. Ми працюємо над глибиною та виразністю, об'єднуючи всі компоненти в єдиний візуальний ряд.",
+            "descriptionEn": "Final processing and giving the image a complete look. We work on depth and expressiveness, combining all components into a unified visual sequence.",
+            "keyFocus": [
+                "Stylistic Integrity",
+                "Artistic Completion"
+            ],
+            "duration": 15,
+            "checkpoint": "Final Approval",
+            "mediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989004/1_post_optimized_l95nnw.jpg",
+            "mediaUrls": [
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989004/1_post_optimized_l95nnw.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989011/2_post_optimized_lvv5j3.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989006/3_post_optimized_ybk9rc.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989009/4_post_optimized_umqrxc.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769989002/5_post_optimized_cc8zyr.jpg"
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Variations",
+            "subtitle": "Expanding the Scope",
+            "description": "Після затвердження основних ракурсів, на їх основі створюються альтернативні сценарії освітлення та сезону.",
+            "descriptionEn": "After approving main angles, alternative lighting and seasonal scenarios are created based on them.",
+            "keyFocus": [
+                "Content Expansion",
+                "Scenario Variety"
+            ],
+            "duration": 15,
+            "checkpoint": null,
+            "mediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988080/2_post_optimized_Autumn___Night_163732_gtak4a.jpg",
+            "mediaUrls": [
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988080/2_post_optimized_Autumn___Night_163732_gtak4a.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988084/2_post_optimized_Summer___Blue_Hour_163949_tu7cqr.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988087/2_post_optimized_Summer___Daylight_163813_k92lne.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988079/2_post_optimized_Summer___Night_164039_mk8kk1.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988083/2_post_optimized_Winter___Daylight_163136_krhhk5.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988084/2_post_optimized_Winter___Overcast_163217_jsdch0.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988100/3_post_optimized_Autumn___Blue_Hour_152055_t6e0bd.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988096/3_post_optimized_Summer___Blue_Hour_152353_t61jpd.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988093/3_post_optimized_Summer___Night_152434_spz0us.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988092/3_post_optimized_Winter___Blue_Hour_151721_mqujgn.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988099/3_post_optimized_Winter___Daylight_151556_sehz0u.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988095/3_post_optimized_Winter___Overcast_151640_zvfead.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988111/4_post_optimized_Summer___Blue_Hour_153301_ena6qg.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988105/4_post_optimized_Winter___Blue_Hour_152645_p6lqtm.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988114/4_post_optimized_Winter___Daylight_152515_dl7ae3.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988112/4_post_optimized_Winter___Night_152728_sbzdbw.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988108/4_post_optimized_Winter___Night___Xmas_152806_obz04u.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988106/4_post_optimized_Winter___Overcast_152600_yjpq0c.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988130/5_post_optimized_Autumn___Daylight_153754_bidd4m.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988127/5_post_optimized_Summer___Blue_Hour_154226_bj7von.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988123/5_post_optimized_Summer___Night_154306_eo8zzp.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988134/5_post_optimized_Summer___Overcast_154138_icsch7.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988132/5_post_optimized_Winter___Daylight_153424_w31pjn.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988124/5_post_optimized_Winter___Night___Xmas_153710_wqn44v.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988123/5_post_optimized_Winter___Overcast_153504_vyy5lj.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988063/sealight_cam001_10_uf0bm5.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988065/sealight_cam001_13_lffvng.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988060/sealight_cam001_2_mhyeqr.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988062/sealight_cam001_5_iwcjte.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988062/sealight_cam001_6_eygcdt.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988058/sealight_cam001_7_csauhj.jpg",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769988057/sealight_cam001_9_vlj4u9.jpg"
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Animation",
+            "subtitle": "Cinematic Movement",
+            "description": "Трансформація статичного зображення у відеоформат. Ми інтегруємо в затверджені сцени кінематографічний рух камери та динаміку середовища.",
+            "descriptionEn": "Transforming static imagery into video format. We integrate cinematic camera movement and environmental dynamics into approved scenes.",
+            "keyFocus": [
+                "Cinematography",
+                "Scene Dynamics"
+            ],
+            "duration": 10,
+            "checkpoint": null,
+            "mediaUrl": "https://res.cloudinary.com/daz24y7ev/video/upload/v1769987586/0e536ab4-73d9-43a1-9121-0d44bdc67b4a_mlipir.mp4",
+            "posterUrl": "/assets/stage6/poster.jpg",
+            "isAnimated": true,
+            "mediaUrls": [
+                "https://res.cloudinary.com/daz24y7ev/video/upload/v1769987586/0e536ab4-73d9-43a1-9121-0d44bdc67b4a_mlipir.mp4",
+                "https://res.cloudinary.com/daz24y7ev/video/upload/v1769987938/a4423235-96bd-4424-93c2-9d7df6b1e011_swhta9.mp4",
+                "https://res.cloudinary.com/daz24y7ev/video/upload/v1769988007/cfbbf00c-e0b8-4353-9c4b-f8c337480acd_h01ktq.mp4"
+            ]
+        },
+        {
+            "id": 7,
+            "title": "Delivery",
+            "subtitle": "Marketing-Ready Assets",
+            "description": "Формування пакету активів та технічна фіналізація. Ми адаптуємо матеріали під вимоги ваших майданчиків.",
+            "descriptionEn": "Asset package formation and technical finalization. We adapt materials to your platform requirements.",
+            "keyFocus": [
+                "Technical Adaptation",
+                "Implementation Support"
+            ],
+            "duration": 10,
+            "checkpoint": null,
+            "mediaUrl": "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991858/Screenshot_1_odkg7j.png",
+            "mediaUrls": [
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991858/Screenshot_1_odkg7j.png",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991860/Screenshot_2_dmwekr.png",
+                "https://res.cloudinary.com/daz24y7ev/image/upload/v1769991860/Screenshot_3_ukjb1l.png"
+            ]
+        }
+    ],
+    "meta": {
+        "totalDuration": 145,
+        "studioName": "Suburbia Studio",
+        "tagline": "Hybrid Workflow: Complete Project Control"
+    }
+}
